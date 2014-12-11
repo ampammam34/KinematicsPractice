@@ -8,14 +8,11 @@ import numpy as np
 import math
 
 #def func(x,y,z,th):
-    
-x=1
-y=1
-z=1
+x=0
+y=0
+z=0
 th = [1,2,3,4,5,6,7]
-P = np.array([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
-
-    #th[1] = 1,th[2] = 1,th[3] = 1,th[4] = 1,th[5] = 1,th[6] = 1,th[7] = 1
+P = np.array([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]) #Pの初期化
         
 tranX = (x,y,z,th,P)
 for i in range(1,7):
@@ -28,6 +25,8 @@ for i in range(1,7):
     elif i == 3 or i == 5:
         P = np.array([[c,s,0,x],[-s,c,0,y],[0,0,1,z],[0,0,0,1]])
     print P
+
+    
 
     
 
