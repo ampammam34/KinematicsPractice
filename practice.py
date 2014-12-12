@@ -37,15 +37,17 @@ if __name__ == '__main__':
     l1 = 10
     l2 = 12
     l3 = 15
-    th = [0, 0, 0, 0, 0, 0, 0]
+    #th = [0, 0, 0, 0, 0, 0, 0]
+    th = [0, 0, 0, 0, 0, 0, 1.57]　
+            #th[5],th[6]を1.57にしたときは、90[deg]違いじゃない気がする・・
     T = [0]*7
 
-    T1 = rotationYandOffset(0, 0, 0, th[0])
-    T2 = rotationXandOffset(0, 0, 0, th[1])
+    T1 = rotationYandOffset(0, 0, 0, th[0])  
+    T2 = rotationXandOffset(0, 0, 0, th[1]) 
     T3 = rotationZandOffset(0, 0, l1, th[2])
-    T4 = rotationYandOffset(0, 0, 0, th[3])
-    T5 = rotationZandOffset(0, 0, l2, th[4])
-    T6 = rotationYandOffset(0, 0, 0, th[5])
+    T4 = rotationYandOffset(0, 0, 0, th[3]) 
+    T5 = rotationZandOffset(0, 0, l2, th[4]) 
+    T6 = rotationYandOffset(0, 0, 0, th[5])  
     T7 = rotationXandOffset(l3, 0, 0, th[6])
     
     Hand = np.array([[0],[0],[0],[1]])
