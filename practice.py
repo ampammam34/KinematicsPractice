@@ -5,30 +5,57 @@ import sys
 import time
 sys.path.append(".")
 import numpy as np
+import scipy as sp
 import math
 
 #def func(x,y,z,th):
-x=0
-y=0
-z=0
-th = [1,2,3,4,5,6,7]
-P = np.array([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]) #Pの初期化
+#    P = np.array([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]) #Pの初期化
+#    for i in range(7):
+#        s = math.sin(th[i])
+#        c = math.cos(th[i])
+
+def rotationXandOffset(x, y, z, th):
+    P = np.array([[1,0,0,x],[0,c,s,y],[0,-s,c,z],[0,0,0,1]])
+    return P
+
+def rotationYandOffset(x, y, z, th):
+    P = np.array([[c,0,s,x],[0,1,0,y],[-s,0,c,z],[0,0,0,1]])
+    return P
+
+def rotationZandOffset(x, y, z, th):
+    P = np.array([[c,s,0,x],[-s,c,0,y],[0,0,1,z],[0,0,0,1]])
+    return P
+
+if __name__ == '__main__':
+
+    l1 = 10
+    l2 = 12
+    l3 = 15
+    th = [0, 0, 0, 0, 0, 0, 0]
+    for i in range(7):
+        s = math.sin(th[i])
+        c = math.cos(th[i])
+
+    T1 = rotationYandOffset(0, 0, 0, th[0])
+    T2 = rotationXandOffset(0, 0, 0, th[1])
+    T3 = rotationZandOffset(0, 0, l1, th[2])
+    T4 = rotationYandOffset(0, 0, 0, th[3])
+    T5 = rotationZandOffset(0, 0, l2, th[4])
+    T6 = rotationYandOffset(0, 0, 0, th[5])
+    T7 = rotationXandOffset(l3, 0, 0, th[6])
+    
+    Hand = np.array([[0],[0],[0],[1]])
+
+    #print sp.dot(T1,Hand)
+
+    print dot(dot(dot(dot(dot(dot(dot(dot(dot(dot(T1,T2),T3)),T4)),T5)),T6)),T7)),Hand))
         
-tranX = (x,y,z,th,P)
-for i in range(1,7):
-    s = math.sin(th[i])
-    c = math.cos(th[i])
-    if i == 2 or i == 7:
-        P = np.array([[1,0,0,x],[0,c,s,y],[0,-s,c,z],[0,0,0,1]])
-    elif i == 1 or i == 4 or i == 6:
-        P = np.array([[c,0,s,x],[0,1,0,y],[-s,0,c,z],[0,0,0,1]])
-    elif i == 3 or i == 5:
-        P = np.array([[c,s,0,x],[-s,c,0,y],[0,0,1,z],[0,0,0,1]])
-    print P
+    T = sp.dot(T1,T2,T3,T4,T5,T6,T7,Hand)
 
+    print 'Hand Positoin is ', T
     
 
-    
+    raw_input();
 
     #R7 = tranX(0,0,0,th7)
     #R6 = tranX(0,0,0,th6)
