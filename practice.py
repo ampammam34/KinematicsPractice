@@ -47,11 +47,14 @@ if __name__ == '__main__':
     
     Hand = np.array([[0],[0],[0],[1]])
 
-    #T = [T1,T2,T3,T4,T5,T6,T7,Hand]
+    #T = [T1,T2,T3,T4,T5,T6,T7]
     
-    #for i in range(8):
-    #    dot(T[i],T[i+1]) = T11
+    #for i in T:
+    #    data = sp.dot(Hand,T[i])
+    #    i +=1
+    #    print data
 
+        
     print sp.dot(sp.dot(sp.dot(T1,T2),sp.dot(T3,T4)),sp.dot(sp.dot(T5,T6),sp.dot(T7,Hand)))
         
     #T = sp.dot(T1,T2,T3,T4,T5,T6,T7,Hand)
@@ -61,13 +64,6 @@ if __name__ == '__main__':
 
     raw_input();
 
-    #R7 = tranX(0,0,0,th7)
-    #R6 = tranX(0,0,0,th6)
-    #R5 = tranX(0,0,0,th5)
-    #R4 = tranX(0,0,0,th4)
-    #R3 = tranX(0,0,0,th3)
-    #R2 = tranX(0,0,0,th2)
-    #R1 = tranX(0,0,0,th1)
 
     #P = R1*R2*R3*R4*R5*R6*R7*Roffset*np.array([[0],[0],[1]])
 
