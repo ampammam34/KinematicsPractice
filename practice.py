@@ -14,28 +14,23 @@ import math
 #        s = math.sin(th[i])
 #        c = math.cos(th[i])
 
+#th = [0, 0, 0, 0, 0, 0, 0]
 
 def rotationXandOffset(x, y, z, th):
-    th = [0, 0, 0, 0, 0, 0, 0]
-    for i in range(7):
-        s = math.sin(th[i])
-        c = math.cos(th[i])
+    s = math.sin(th)
+    c = math.cos(th)
     P = np.array([[1,0,0,x],[0,c,s,y],[0,-s,c,z],[0,0,0,1]])
     return P
 
 def rotationYandOffset(x, y, z, th):
-    th = [0, 0, 0, 0, 0, 0, 0]
-    for i in range(7):
-        s = math.sin(th[i])
-        c = math.cos(th[i])
+    s = math.sin(th)
+    c = math.cos(th)
     P = np.array([[c,0,s,x],[0,1,0,y],[-s,0,c,z],[0,0,0,1]])
     return P
 
 def rotationZandOffset(x, y, z, th):
-    th = [0, 0, 0, 0, 0, 0, 0]
-    for i in range(7):
-        s = math.sin(th[i])
-        c = math.cos(th[i])
+    s = math.sin(th)
+    c = math.cos(th)
     P = np.array([[c,s,0,x],[-s,c,0,y],[0,0,1,z],[0,0,0,1]])
     return P
 
