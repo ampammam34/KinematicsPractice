@@ -14,8 +14,6 @@ import math
 #        s = math.sin(th[i])
 #        c = math.cos(th[i])
 
-#th = [0, 0, 0, 0, 0, 0, 0]
-
 def rotationXandOffset(x, y, z, th):
     s = math.sin(th)
     c = math.cos(th)
@@ -52,19 +50,11 @@ if __name__ == '__main__':
     
     Hand = np.array([[0],[0],[0],[1]])
 
-    #T = [T1,T2,T3,T4,T5,T6,T7]
-    
-    #for i in T:
-    #    data = sp.dot(Hand,T[i])
-    #    i +=1
-    #    print data
+    T = [T1,T2,T3,T4,T5,T6,T7]
 
-        
-    print sp.dot(sp.dot(sp.dot(T1,T2),sp.dot(T3,T4)),sp.dot(sp.dot(T5,T6),sp.dot(T7,Hand)))
-        
-    #T = sp.dot(T1,T2,T3,T4,T5,T6,T7,Hand)
+    target_T = sp.dot(T1,sp.dot(T2,sp.dot(T3,sp.dot(T4,sp.dot(T5,sp.dot(T6,sp.dot(T7,Hand)))))))
 
-    #print 'Hand Positoin is ', T
+    print 'Hand Positoin is ', target_T
     
 
     raw_input();
