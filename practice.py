@@ -56,7 +56,6 @@ if __name__ == '__main__':
 
     print 'Hand Positoin is ', target_T
     
-
     raw_input();
 
 
