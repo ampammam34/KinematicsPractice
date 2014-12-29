@@ -19,7 +19,6 @@ my_tuple2 = (("15:right arm up     ",-14,130,130),#R1
                     ("13:right hand length ",-40,28,-6),#R6
                     ("14:right hand side   ",-15,25,5))#R7
 
-
 class TestFrame(tk.Frame):
 
         def __init__(self,root,number,label,min_,max_,init_):
@@ -57,11 +56,13 @@ class TestFrame(tk.Frame):
         def getvalue(self):
                 return self.slider.get()
 
-class ArmLeftFrame(tk.Frame):
-        def __init__(self,root, tuple):
-                tk.Frame.__init__(self,root)
+class ArmLeftFrame(tk.LabelFrame):
+        def __init__(self,root, tuple_1):
+                tk.LabelFrame.__init__(self,root,text = 'LEFT')
                 self.root = root
-                row = 0
+                #label = tk.Label(self, text = '--------LEFT--------')
+                #label.grid(row=0,column=0)
+                row = 1
                 column = 0
                 for elem in my_tuple1:
                         title = elem[0]
@@ -73,11 +74,13 @@ class ArmLeftFrame(tk.Frame):
                         tf.grid(row=row,column=column)
                         row = row + 1
 
-class ArmRightFrame(tk.Frame):
-        def __init__(self,root, tuple):
-                tk.Frame.__init__(self,root)
+class ArmRightFrame(tk.LabelFrame):
+        def __init__(self,root, tuple_2):
+                tk.LabelFrame.__init__(self,root,text = 'RIGHT')
                 self.root = root
-                row = 0
+                #label = tk.Label(self, text = '--------RIGHT-------')
+                #label.grid(row=0,column=0)
+                row = 1
                 column = 0
                 for elem in my_tuple2:
                         title = elem[0]
@@ -88,34 +91,81 @@ class ArmRightFrame(tk.Frame):
                                 #self‚¶‚á‚È‚­‚Äroot‚É‚µ‚½‚ç‘‹‘S‘Ì‚É’Ç‰Á‚³‚ê‚é‚Æ‚¢‚¤‚±‚Æ‚É‚È‚é               
                         tf.grid(row=row,column=column)
                         row = row + 1
-
-class Coordinate(tk.Frame):
+                        
+class CoordinateFrame(tk.Frame):
         def __init__(self, root):
-                self.entry =tk.Entry(self,textvariable=0)
+                tk.Frame.__init__(self,root)
+                self.strvar = tk.StringVar()
+                self.root = root
+                self.strvar.set("0")
+                
+                label = tk.Label(self, text = 'LEFT Target Pose  ')
+                label.grid(row=1,column=3)
+                self.entry_LT = tk.Entry(self,textvariable=self.strvar)
+                self.entry_LT.grid(row=1,column=4)
+                
+                label = tk.Label(self, text = 'LEFT Current Pose ')
+                label.grid(row=2,column=3)
+                self.entry_LC = tk.Entry(self,textvariable=self.strvar)
+                self.entry_LC.grid(row=2,column=4)
+                
+                label = tk.Label(self, text = 'RIGHT Target Pose ')
+                label.grid(row=3,column=3)
+                self.entry_RT = tk.Entry(self,textvariable=self.strvar)
+                self.entry_RT.grid(row=3,column=4)
+                
+                label = tk.Label(self, text = 'RIGHT Current Pose')
+                label.grid(row=4,column=3)
+                self.entry_RC = tk.Entry(self,textvariable=self.strvar)
+                self.entry_RC.grid(row=4,column=4)
+
+
+class SwitchFrame(tk.Frame):
+        def __init__(self, root):
+                tk.Frame.__init__(self,root)
+                self.strvar = tk.StringVar()
+                label = tk.Label(self, text = 'JammingGripper')
+                label.grid(row=0,column=0)
+                button = tk.Button(self, text = 'ON')
+                button.grid(row=0,column=1)
+
+
+class RadioButtonFrame(tk.Frame):
+        def __init__(self, root):
+                tk.Frame.__init__(self,root)
+                self.action = tk.IntVar()
+                self.action.set(1)
+                radio1 = tk.Radiobutton(self, text = 'Coordinate Input', variable = self.action, value = 0)
+                radio1.grid(row=0,column=0)
+                radio2 = tk.Radiobutton(self, text = 'Slider Input', variable = self.action, value = 1)
+                radio2.grid(row=1,column=0)
+
+
+class GUI:
+        def __init__(self):
+                self.root = tk.Tk()
+                armleftFrame = ArmLeftFrame(self.root, my_tuple1)       
+                armleftFrame.grid(row=1,column=0)
+        
+                armrightFrame = ArmRightFrame(self.root, my_tuple2)       
+                armrightFrame.grid(row=3,column=0)
+
+                coordinate = CoordinateFrame(self.root)
+                coordinate.grid(row=1,column=3 and 4)
+
+                switch = SwitchFrame(self.root)
+                switch.grid(row=2,column=4)
+
+                radiobutton = RadioButtonFrame(self.root)
+                radiobutton.grid(row=3,column=4)
+
+        def mainloop(self):
+                self.root.mainloop()
            
 
 
 if __name__ == '__main__':
-        root = tk.Tk()
-        frames1 = []
-        frames2 = []
-        c0 = tk.Canvas(root, width = 150, height = 30)
-        c0.create_text(75, 15, text = '--------LEFT--------', font = ('FixedSys', 14))
-        c0.pack()
-        armleftFrame1 = ArmLeftFrame(root, my_tuple1)       
-        armleftFrame1.pack()
-        c0 = tk.Canvas(root, width = 150, height = 30)
-        c0.create_text(75, 15, text = '--------RIGHT--------', font = ('FixedSys', 14))
-        c0.pack()
-        armrightFrame1 = ArmRightFrame(root, my_tuple2)       
-        armrightFrame1.pack()
-        #coordinate = Coordinate(root)
-        #coordinate.pack()
+        g = GUI()
 
-
-
-                
-        #return root, frames
-
-        root.mainloop()
+        g.mainloop()
 
